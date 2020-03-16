@@ -15,7 +15,7 @@ import java.util.List;
 public class Section {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -28,7 +28,7 @@ public class Section {
 
 
     @ManyToMany(mappedBy = "sections")
-    private List<Student> studentList;
+    private List<Student> students;
 
     public Section(String name) {
         this.name = name;

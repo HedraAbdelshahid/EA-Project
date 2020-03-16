@@ -1,11 +1,8 @@
 package CS544.finalProject.backEnd.controllers;
 
-import CS544.finalProject.backEnd.services.SectionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 public class SectionController {
-    @Autowired
-    private SectionService sectionService;
+
 }

@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -14,7 +15,7 @@ import javax.persistence.*;
 public class Offering {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String code;
@@ -23,7 +24,7 @@ public class Offering {
     private Course course;
 
     @OneToMany
-    private Block block;
+    private List<Block> block;
 
     public Offering(String code) {
         this.code = code;

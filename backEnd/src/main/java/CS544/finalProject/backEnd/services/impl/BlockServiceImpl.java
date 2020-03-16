@@ -10,7 +10,7 @@ import java.util.List;
 public class BlockServiceImpl implements BlockService {
 
     @Autowired
-   private BlockDao blockDao;
+    private BlockDao blockDao;
 
     @Override
     public Block save(Block Block) {

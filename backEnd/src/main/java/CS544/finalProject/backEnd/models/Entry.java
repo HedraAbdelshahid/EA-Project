@@ -16,7 +16,7 @@ import java.util.List;
 public class Entry {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Temporal(TemporalType.DATE)
@@ -26,7 +26,7 @@ public class Entry {
 
 
     @OneToMany(mappedBy = "entry")
-    private List<Student> studentList;
+    private List<Student> students;
 
     public Entry(String name, Date startDate, Date endDate) {
         this.name = name;

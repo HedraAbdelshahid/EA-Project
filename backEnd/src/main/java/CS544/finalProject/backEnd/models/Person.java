@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 public class Person {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Email
@@ -40,7 +40,7 @@ public class Person {
     @AttributeOverrides({
             @AttributeOverride(name = "street", column = @Column(name = "mail_street")),
             @AttributeOverride(name = "city", column = @Column(name = "mail_city")),
-            @AttributeOverride(name = "zip", column = @Column(name = "home_zip")),
+            @AttributeOverride(name = "zip", column = @Column(name = "mail_zip")),
             @AttributeOverride(name = "country", column = @Column(name = "mail_country"))
     }
     )

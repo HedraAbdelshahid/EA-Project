@@ -11,7 +11,8 @@ import java.util.List;
 
 @RestController
 public class BlockController {
-    @Autowired
+
+    @Autowired(required = true)
     private BlockService blockService;
 
     @GetMapping("/")
