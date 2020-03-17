@@ -22,9 +22,9 @@ public class Section {
 
     @OneToOne
     private Faculty faculty;
-
     @ManyToOne
     private Offering offering;
+
 
 
     @ManyToMany(mappedBy = "sections")

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -16,27 +17,27 @@ public class BlockServiceImpl implements BlockService {
     private BlockDao blockDao;
 
     @Override
-    public Block save(Block Block) {
-        return null;
+    public Block save(Block block) {
+        return blockDao.save(block);
     }
 
     @Override
-    public Block update(Block Block) {
-        return null;
+    public Block update(Block block) {
+        return blockDao.update(block);
     }
 
     @Override
-    public void delete(Block Block) {
-
+    public void delete(Long id) {
+        blockDao.delete(id);
     }
 
     @Override
     public List<Block> findAll() {
-        return null;
+        return blockDao.findAll();
     }
 
     @Override
-    public Block findById(Long id) {
-        return null;
+    public Optional<Block> findById(Long id) {
+        return blockDao.findById(id);
     }
 }

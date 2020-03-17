@@ -4,6 +4,7 @@ import CS544.finalProject.backEnd.models.Course;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CourseService {
 
@@ -11,9 +12,9 @@ public interface CourseService {
 
     Course update(Course course);
 
-    void delete(Course course);
+    void delete(Long courseId);
 
     List<Course> findAll();
 
-    Course findById(Long id);
+    Optional<Course> findById(Long id);
 }

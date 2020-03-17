@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class BlockDaoImpl implements BlockDao {
@@ -15,27 +16,27 @@ public class BlockDaoImpl implements BlockDao {
     BlockRepository blockRepository;
 
     @Override
-    public Block save(Block Block) {
-        return null;
+    public Block save(Block block) {
+        return blockRepository.save(block);
     }
 
     @Override
-    public Block update(Block Block) {
-        return null;
+    public Block update(Block block) {
+        return blockRepository.save(block);
     }
 
     @Override
-    public void delete(Block Block) {
-
+    public void delete(Long id) {
+        blockRepository.deleteById(id);
     }
 
     @Override
-    public List<Block> findAll(Block Block) {
-        return null;
+    public List<Block> findAll() {
+        return blockRepository.findAll();
     }
 
     @Override
-    public Block findById(Long id) {
-        return null;
+    public Optional<Block> findById(Long id) {
+        return blockRepository.findById(id);
     }
 }

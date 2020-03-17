@@ -6,7 +6,9 @@ import CS544.finalProject.backEnd.repository.OfferingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class OfferingDaoImpl implements OfferingDao {
@@ -16,26 +18,31 @@ public class OfferingDaoImpl implements OfferingDao {
 
     @Override
     public Offering save(Offering offering) {
-        return null;
+        return offeringRepository.save(offering);
     }
 
     @Override
     public Offering update(Offering offering) {
-        return null;
+        return offeringRepository.save(offering);
     }
 
     @Override
-    public void delete(Offering offering) {
-
+    public void delete(Long id) {
+        offeringRepository.deleteById(id);
     }
 
     @Override
-    public List<Offering> findAll(Offering offering) {
-        return null;
+    public List<Offering> findAll() {
+        return offeringRepository.findAll();
     }
 
     @Override
-    public Offering findById(Long id) {
-        return null;
+    public Optional<Offering> findById(Long id) {
+        return offeringRepository.findById(id);
+    }
+
+    @Override
+    public Collection<Offering> findOfferingsCourseBlock() {
+        return offeringRepository.findOfferingsCourseBlock();
     }
 }

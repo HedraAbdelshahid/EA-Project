@@ -6,7 +6,9 @@ import CS544.finalProject.backEnd.services.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfferingServiceImpl implements OfferingService {
@@ -16,26 +18,31 @@ public class OfferingServiceImpl implements OfferingService {
 
     @Override
     public Offering save(Offering offering) {
-        return null;
+        return offeringDao.save(offering);
     }
 
     @Override
     public Offering update(Offering offering) {
-        return null;
+        return offeringDao.update(offering);
     }
 
     @Override
-    public void delete(Offering offering) {
-
+    public void delete(Long id) {
+        offeringDao.delete(id);
     }
 
     @Override
     public List<Offering> findAll() {
-        return null;
+        return offeringDao.findAll();
     }
 
     @Override
-    public Offering findById(Long id) {
-        return null;
+    public Optional<Offering> findById(Long id) {
+        return offeringDao.findById(id);
+    }
+
+    @Override
+    public Collection<Offering> findOfferingsCourseBlock() {
+        return offeringDao.findOfferingsCourseBlock();
     }
 }

@@ -2,9 +2,7 @@ package CS544.finalProject.backEnd.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.Date;
