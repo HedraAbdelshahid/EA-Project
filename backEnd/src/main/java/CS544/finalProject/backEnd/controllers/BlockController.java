@@ -12,10 +12,15 @@ import java.util.List;
 @RestController
 public class BlockController {
 
-    @Autowired(required = true)
+    @Autowired
     private BlockService blockService;
 
     @GetMapping("/")
+    public String get(){
+        return "Hello Block Controller";
+    }
+
+    @GetMapping("/a")
     public List<Block> findAll( ) {
         return blockService.findAll();
     }

@@ -4,9 +4,11 @@ import CS544.finalProject.backEnd.dao.PersonDao;
 import CS544.finalProject.backEnd.models.Person;
 import CS544.finalProject.backEnd.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PersonServiceImpl implements PersonService {
 
     @Autowired
