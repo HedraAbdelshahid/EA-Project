@@ -18,7 +18,6 @@ import murraco.model.User;
 import murraco.service.UserService;
 
 @RestController
-
 @RequestMapping("/users")
 @Api(tags = "users")
 public class UserController {

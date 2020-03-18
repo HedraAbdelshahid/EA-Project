@@ -1,5 +1,6 @@
 package murraco.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import murraco.configuration.AppConfig;
@@ -13,10 +14,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @RestController
+@Api(tags = "block")
 public class BlockController {
 
     private static final String _URL = AppConfig.MICROSERVICE_URL + AppConfig.BLOCKS;
     private static final String _URLS = _URL + "/";
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -29,6 +32,7 @@ public class BlockController {
     public List<Block> getAllCourse() {
         return (List<Block>) restTemplate.getForObject(_URL, Object.class);
     }
+
 
     @GetMapping(AppConfig.BLOCKS + "/{blockId}")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")

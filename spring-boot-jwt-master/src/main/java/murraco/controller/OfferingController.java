@@ -1,5 +1,6 @@
 package murraco.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import murraco.configuration.AppConfig;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @RestController
+@Api(tags = "offering")
 public class OfferingController {
 
     private static final String _URL = AppConfig.MICROSERVICE_URL + AppConfig.OFFERINGS;
