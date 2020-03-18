@@ -4,9 +4,11 @@ import CS544.finalProject.backEnd.dao.CourseDao;
 import CS544.finalProject.backEnd.models.Course;
 import CS544.finalProject.backEnd.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CourseServiceImpl implements CourseService {
 
     @Autowired

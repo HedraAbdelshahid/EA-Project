@@ -1,6 +1,5 @@
 package CS544.finalProject.backEnd;
 
-import CS544.finalProject.backEnd.models.Address;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +10,5 @@ public class BackEndApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackEndApplication.class, args);
 	}
-
 
 }

@@ -4,9 +4,11 @@ import CS544.finalProject.backEnd.dao.OfferingDao;
 import CS544.finalProject.backEnd.models.Offering;
 import CS544.finalProject.backEnd.services.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OfferingServiceImpl implements OfferingService {
 
     @Autowired

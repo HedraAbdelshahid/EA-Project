@@ -5,9 +5,10 @@ import CS544.finalProject.backEnd.models.Course;
 import CS544.finalProject.backEnd.models.Person;
 import CS544.finalProject.backEnd.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class CourseDaoImpl implements CourseDao {
 
     @Autowired
