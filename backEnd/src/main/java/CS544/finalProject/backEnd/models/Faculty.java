@@ -26,4 +26,8 @@ public class Faculty extends Person {
         super(email, name);
         this.title = title;
     }
+    public Section getSection(){
+        return section;
+    }
+
 }
