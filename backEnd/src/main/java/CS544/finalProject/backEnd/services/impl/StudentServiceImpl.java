@@ -2,10 +2,8 @@ package CS544.finalProject.backEnd.services.impl;
 
 import CS544.finalProject.backEnd.dao.SectionDao;
 import CS544.finalProject.backEnd.dao.StudentDao;
-import CS544.finalProject.backEnd.models.ResourceNotFoundException;
-import CS544.finalProject.backEnd.models.Section;
-import CS544.finalProject.backEnd.models.Student;
-import CS544.finalProject.backEnd.models.StudentDTO;
+import CS544.finalProject.backEnd.models.*;
+import CS544.finalProject.backEnd.services.EnrollmentService;
 import CS544.finalProject.backEnd.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +19,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentDao studentDao;
 
+    @Autowired
+    EnrollmentService enrollmentService;
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Student save(Student student) {
@@ -63,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
         return (Student) studentDao.findById(id).orElseThrow(() -> new ResourceNotFoundException("No Student is found the required id: " + id));
     }
 
-    @Override
+   /* @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Student enroll(long studentId, @RequestBody StudentDTO studentDTO) throws Throwable {
 
@@ -79,6 +79,18 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return student;
+    }
+*/
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public Student enrol(@RequestBody StudentSectionDTO studentSectionDTO) throws Throwable{
+
+        Long studentId = studentSectionDTO.getStudentId();
+
+        studentSectionDTO.getSectionIds().forEach(s -> enrollmentService.enrol(studentId, s));
+
+        return findById(studentId);
+
     }
 
 

@@ -22,6 +22,23 @@ public class Section {
 
     @OneToOne
     private Faculty faculty;
+
+    @ManyToOne
+    private Offering offering;
+
+
+    public Section(String name) {
+        this.name = name;
+    }
+
+  /*  @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @OneToOne
+    private Faculty faculty;
     @ManyToOne
     private Offering offering;
 
@@ -32,6 +49,6 @@ public class Section {
     public Section(String name) {
         this.name = name;
     }
-
+*/
 
 }

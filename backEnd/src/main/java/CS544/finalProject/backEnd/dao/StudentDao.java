@@ -15,5 +15,5 @@ public interface StudentDao {
 
     List<Student> findAll();
 
-    Optional findById(Long id);
+    Optional<Student> findById(Long id);
 }

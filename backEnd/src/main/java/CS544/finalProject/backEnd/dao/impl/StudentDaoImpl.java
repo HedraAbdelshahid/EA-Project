@@ -35,7 +35,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public Optional findById(Long id) {
+    public Optional<Student> findById(Long id) {
         return studentRepository.findById(id);
     }
 }

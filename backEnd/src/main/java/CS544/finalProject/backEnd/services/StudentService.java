@@ -17,5 +17,8 @@ public interface StudentService {
 
     Student findById(Long id) throws Throwable;
 
-    Student enroll(long studentId, @RequestBody StudentDTO studentDTO) throws Throwable;
+//    Student enroll(long studentId, @RequestBody StudentDTO studentDTO) throws Throwable;
+
+    Student enrol(StudentSectionDTO studentSectionDTO) throws Throwable;
+
 }

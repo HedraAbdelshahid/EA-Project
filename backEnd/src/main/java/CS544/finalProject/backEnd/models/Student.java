@@ -14,7 +14,19 @@ import java.util.List;
 @NoArgsConstructor
 public class Student extends Person {
 
-    //    @GeneratedValue
+    private Long studentId;
+
+    @ManyToOne
+    private Entry entry;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    private List<Enrollment> enrollments;
+
+    public Student(String email, String name, Long studentId) {
+        super(email, name);
+        this.studentId = studentId;
+    }
+    /*//    @GeneratedValue
     private Long studentId;
 
     @ManyToOne
@@ -27,5 +39,5 @@ public class Student extends Person {
     public Student(String email, String name, Long studentId) {
         super(email, name);
         this.studentId = studentId;
-    }
+    }*/
 }
