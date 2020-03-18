@@ -4,9 +4,10 @@ import CS544.finalProject.backEnd.dao.BlockDao;
 import CS544.finalProject.backEnd.models.Block;
 import CS544.finalProject.backEnd.repository.BlockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class BlockDaoImpl implements BlockDao {
 
     @Autowired

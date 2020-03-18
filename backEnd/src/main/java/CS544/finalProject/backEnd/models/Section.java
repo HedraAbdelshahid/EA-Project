@@ -27,7 +27,7 @@ public class Section {
     private Offering offering;
 
 
-    @ManyToMany(mappedBy = "sections")
+    @ManyToMany(mappedBy = "sections",cascade = CascadeType.ALL)
     private List<Student> students;
 
     public Section(String name) {

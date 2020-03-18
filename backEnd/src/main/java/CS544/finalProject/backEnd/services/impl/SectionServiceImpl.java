@@ -4,9 +4,10 @@ import CS544.finalProject.backEnd.dao.SectionDao;
 import CS544.finalProject.backEnd.models.Section;
 import CS544.finalProject.backEnd.services.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class SectionServiceImpl implements SectionService {
 
     @Autowired

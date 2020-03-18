@@ -4,9 +4,10 @@ import CS544.finalProject.backEnd.dao.PersonDao;
 import CS544.finalProject.backEnd.models.Person;
 import CS544.finalProject.backEnd.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class PersonDaoImpl implements PersonDao {
 
     @Autowired

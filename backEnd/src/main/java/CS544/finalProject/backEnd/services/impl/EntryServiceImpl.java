@@ -4,9 +4,10 @@ import CS544.finalProject.backEnd.dao.EntryDao;
 import CS544.finalProject.backEnd.models.Entry;
 import CS544.finalProject.backEnd.services.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class EntryServiceImpl implements EntryService {
 
     @Autowired

@@ -4,7 +4,7 @@ import CS544.finalProject.backEnd.models.Person;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public interface PersonService {
 
     Person save(Person Person);
