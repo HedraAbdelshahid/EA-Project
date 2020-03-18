@@ -4,8 +4,10 @@ import CS544.finalProject.backEnd.dao.BlockDao;
 import CS544.finalProject.backEnd.models.Block;
 import CS544.finalProject.backEnd.services.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public class BlockServiceImpl implements BlockService {
 

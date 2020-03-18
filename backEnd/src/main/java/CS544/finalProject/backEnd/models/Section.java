@@ -14,25 +14,21 @@ import java.util.List;
 @Setter
 public class Section {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String name;
+	private String name;
 
-    @OneToOne
-    private Faculty faculty;
+	@OneToOne
+	private Faculty faculty;
 
-    @ManyToOne
-    private Offering offering;
+	@ManyToOne
+	private Offering offering;
 
 
-    @ManyToMany(mappedBy = "sections")
-    private List<Student> students;
-
-    public Section(String name) {
-        this.name = name;
-    }
-
+	public Section(String name) {
+		this.name = name;
+	}
 
 }

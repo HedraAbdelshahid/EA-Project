@@ -4,7 +4,6 @@ import CS544.finalProject.backEnd.models.Offering;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 public interface OfferingService {
 
     Offering save(Offering offering);

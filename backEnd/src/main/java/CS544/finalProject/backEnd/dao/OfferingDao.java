@@ -1,7 +1,6 @@
 package CS544.finalProject.backEnd.dao;
 
 import CS544.finalProject.backEnd.models.Offering;
-import CS544.finalProject.backEnd.models.Offering;
 
 import java.util.List;
 

@@ -8,24 +8,21 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 public class Student extends Person {
 
+	private Long studentId;
 
-    //    @GeneratedValue
-    private Long studentId;
+	@ManyToOne
+	private Entry entry;
 
-    @ManyToOne
-    private Entry entry;
+	@OneToMany(mappedBy = "student")
+	private List<Enrollment> enrollments;
 
-    @ManyToMany
-    @JoinTable(name = "enrollment")
-    private List<Section> sections;
-
-    public Student(String email, String name, Long studentId) {
-        super(email, name);
-        this.studentId = studentId;
-    }
+	public Student(String email, String name, Long studentId) {
+		super(email, name);
+		this.studentId = studentId;
+	}
 }

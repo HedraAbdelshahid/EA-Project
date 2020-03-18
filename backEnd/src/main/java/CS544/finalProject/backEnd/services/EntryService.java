@@ -1,20 +1,20 @@
 package CS544.finalProject.backEnd.services;
 
 import CS544.finalProject.backEnd.models.Entry;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface EntryService {
 
-    Entry save(Entry entry);
+	Entry save(Entry entry);
 
-    Entry update(Entry entry);
+	Entry update(Long Id, Entry entryDetails) throws Throwable;
 
-    void delete(Entry entry);
+	void delete(Long Id) throws Throwable;
 
-    List<Entry> findAll();
+	List<Entry> findAll();
 
-    Entry findById(Long id);
+	Entry findById(Long id);
+	boolean checkEnrolmentDate(Long entryId);
+
 }

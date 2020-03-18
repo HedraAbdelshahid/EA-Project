@@ -12,7 +12,9 @@ public interface EntryDao {
 
     void delete(Entry entry);
 
-    List<Entry> findAll(Entry entry);
+    List<Entry> findAll();
 
     Entry findById(Long id);
+
+	
 }
