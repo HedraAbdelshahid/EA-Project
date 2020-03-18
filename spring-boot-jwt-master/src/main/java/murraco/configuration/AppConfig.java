@@ -9,6 +9,8 @@ public class AppConfig {
     public static final String OFFERINGS = _API + "/offerings";
     public static final String STUDENTS = _API + "/students";
     public static final String STUDENTS_OTHER = "/students";
+    public static final String SECTIONS_OTHER = "/sections";
+    public static final String SECTIONS = _API + "/sections";
 
     public static final String MICROSERVICE_URL = "http://localhost:8080";
 }

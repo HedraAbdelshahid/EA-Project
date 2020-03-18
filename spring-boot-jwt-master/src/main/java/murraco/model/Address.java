@@ -1,10 +1,13 @@
 package murraco.model;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 
 @NoArgsConstructor

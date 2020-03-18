@@ -1,5 +1,4 @@
 package murraco.model;
-
 public class ResourceNotFoundException extends Exception {
 
     private String message;

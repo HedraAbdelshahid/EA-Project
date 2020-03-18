@@ -1,8 +1,8 @@
 package murraco.model;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

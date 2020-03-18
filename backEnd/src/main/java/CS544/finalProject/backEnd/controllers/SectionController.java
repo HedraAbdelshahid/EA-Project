@@ -22,7 +22,7 @@ public class SectionController {
 		return sectionService.findAll();
 	}
 
-	@PostMapping(value = "/Sections/{sectionId}")
+	@PostMapping(value = "/sections/{sectionId}")
 	public Section updateSection(@PathVariable Long sectionId, Section sectionDetail) {
 
 		return sectionService.update(sectionId, sectionDetail);
