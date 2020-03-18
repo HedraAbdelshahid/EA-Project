@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,15 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 public class Student extends Person {
 
-
     //    @GeneratedValue
     private Long studentId;
 
     @ManyToOne
     private Entry entry;
 
-    @ManyToMany
-    @JoinTable(name = "enrollment")
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable()
     private List<Section> sections;
 
     public Student(String email, String name, Long studentId) {
