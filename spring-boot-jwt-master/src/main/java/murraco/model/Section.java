@@ -1,4 +1,5 @@
 package murraco.model;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,6 +31,9 @@ public class Section {
         this.name = name;
     }
 
+    public Long getId(){
+        return id;
+    }
   /*  @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

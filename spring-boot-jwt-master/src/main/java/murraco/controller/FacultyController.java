@@ -1,10 +1,10 @@
-/*
 package murraco.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import murraco.configuration.AppConfig;
+import murraco.model.Faculty;
 import murraco.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -73,4 +73,3 @@ public class FacultyController {
     }
 
 }
-*/

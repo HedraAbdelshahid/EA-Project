@@ -1,4 +1,5 @@
 package murraco.model;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -25,4 +26,8 @@ public class Faculty extends Person {
         super(email, name);
         this.title = title;
     }
+    public Section getSection(){
+        return section;
+    }
+
 }

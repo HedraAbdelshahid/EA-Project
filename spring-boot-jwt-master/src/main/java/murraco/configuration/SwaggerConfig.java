@@ -44,7 +44,7 @@ public class SwaggerConfig {
                 .tags(new Tag("person", "Add/Get/Update/Delete Person"))
                 .tags(new Tag("section", "Add/Get/Update/Delete Section"))
                 .tags(new Tag("student", "Add/Get/Update/Delete Student"))
-                .tags(new Tag("faculty", "Add/Get/Delete and Fetch Student"))
+                .tags(new Tag("faculty", "Add/Get/Delete and Fetch Faculty"))
 
 
                 .genericModelSubstitutes(Optional.class);
