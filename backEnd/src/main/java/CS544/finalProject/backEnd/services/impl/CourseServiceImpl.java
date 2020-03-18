@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -16,26 +17,26 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course save(Course course) {
-        return null;
+        return courseDao.save(course);
     }
 
     @Override
     public Course update(Course course) {
-        return null;
+        return courseDao.update(course);
     }
 
     @Override
-    public void delete(Course course) {
-
+    public void delete(Long courseId) {
+        courseDao.delete(courseId);
     }
 
     @Override
     public List<Course> findAll() {
-        return null;
+        return courseDao.findAll();
     }
 
     @Override
-    public Course findById(Long id) {
-        return null;
+    public Optional<Course> findById(Long id) {
+        return courseDao.findById(id);
     }
 }

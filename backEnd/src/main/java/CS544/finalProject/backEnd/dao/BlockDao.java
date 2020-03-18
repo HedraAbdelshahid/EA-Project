@@ -3,6 +3,7 @@ package CS544.finalProject.backEnd.dao;
 import CS544.finalProject.backEnd.models.Block;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BlockDao {
 
@@ -10,9 +11,9 @@ public interface BlockDao {
 
     Block update(Block Block);
 
-    void delete(Block Block);
+    void delete(Long id);
 
-    List<Block> findAll(Block Block);
+    List<Block> findAll();
 
-    Block findById(Long id);
+    Optional<Block> findById(Long id);
 }

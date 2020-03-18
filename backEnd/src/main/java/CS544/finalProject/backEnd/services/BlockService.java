@@ -4,6 +4,7 @@ import CS544.finalProject.backEnd.models.Block;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface BlockService {
@@ -12,9 +13,9 @@ public interface BlockService {
 
     Block update(Block Block);
 
-    void delete(Block Block);
+    void delete(Long id);
 
     List<Block> findAll();
 
-    Block findById(Long id);
+    Optional<Block> findById(Long id);
 }

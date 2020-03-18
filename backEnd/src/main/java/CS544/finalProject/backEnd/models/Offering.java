@@ -20,10 +20,10 @@ public class Offering {
 
     private String code;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Course course;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Block> block;
 
     public Offering(String code) {

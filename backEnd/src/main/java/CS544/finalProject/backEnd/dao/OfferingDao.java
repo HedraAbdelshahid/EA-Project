@@ -3,7 +3,9 @@ package CS544.finalProject.backEnd.dao;
 import CS544.finalProject.backEnd.models.Offering;
 import CS544.finalProject.backEnd.models.Offering;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface OfferingDao {
 
@@ -11,9 +13,11 @@ public interface OfferingDao {
 
     Offering update(Offering offering);
 
-    void delete(Offering offering);
+    void delete(Long id);
 
-    List<Offering> findAll(Offering offering);
+    List<Offering> findAll();
 
-    Offering findById(Long id);
+    Optional<Offering> findById(Long id);
+
+    Collection<Offering> findOfferingsCourseBlock();
 }
