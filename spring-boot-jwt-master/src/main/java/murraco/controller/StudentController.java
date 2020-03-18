@@ -3,8 +3,8 @@ package murraco.controller;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import murraco.configuration.AppConfig;
-import murraco.model.Course;
-import murraco.model.ResourceNotFoundException;
+import murraco.model.Student;
+import murraco.model.StudentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -13,62 +13,57 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @RestController
-//@RequestMapping(value = AppConfig.COURSE)
-public class CourseController {
+public class StudentController {
 
-    private static final String _URL = AppConfig.MICROSERVICE_URL + AppConfig.COURSES;
+    private static final String _URL = AppConfig.MICROSERVICE_URL + AppConfig.STUDENTS_OTHER;
     private static final String _URLS = _URL + "/";
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping(AppConfig.COURSES)
+    @PostMapping(AppConfig.STUDENTS)
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public List<Course> getAllCourse() {
-        return (List<Course>) restTemplate.getForObject(_URL, Object.class);
+    public Student addStudent(@RequestBody Student student) {
+        return (Student) restTemplate.postForObject(_URL, student, Object.class);
     }
 
-    @GetMapping(AppConfig.COURSES + "/{courseId}")
+    @GetMapping(AppConfig.STUDENTS)
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public Course getCourseById(@PathVariable Long courseId) {
-        return (Course) restTemplate.getForObject(_URL + courseId, Object.class);
+    public List<Student> getAll() {
+        return (List<Student>) restTemplate.getForObject(_URL, Object.class);
     }
 
-    @PostMapping(AppConfig.COURSES)
+    @PutMapping(AppConfig.STUDENTS + "{studentId}")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public Course addCourse(@RequestBody Course course) {
-        return (Course) restTemplate.postForObject(_URL, course, Object.class);
+    public Student updateStudent(@PathVariable long studentId, @RequestBody Student student) {
+        return (Student) restTemplate.postForObject(_URLS + studentId, student, Object.class);
     }
 
-    @PutMapping(AppConfig.COURSES)
+    @DeleteMapping(AppConfig.STUDENTS + "{studentId}")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     @ApiResponses(value = {//
             @ApiResponse(code = 400, message = "Something went wrong"), //
             @ApiResponse(code = 403, message = "Access denied"), //
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public Course updateCourse(@RequestBody Course course) {
-        return (Course) restTemplate.postForObject(_URL, course, Object.class);
+    public void deleteStudent(@PathVariable long studentId) {
+        restTemplate.delete(_URLS + studentId);
     }
 
-    @DeleteMapping(AppConfig.COURSES + "/{courseId}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-    @ApiResponses(value = {//
-            @ApiResponse(code = 400, message = "Something went wrong"), //
-            @ApiResponse(code = 403, message = "Access denied"), //
-            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public void delete(@PathVariable Long courseId) {
-        restTemplate.delete(_URLS  + courseId);
+    @PutMapping(AppConfig.STUDENTS + "{studentId}/enroll")
+    public Student enroll(@PathVariable Long studentId, @RequestBody StudentDTO studentDTO) {
+        return (Student) restTemplate.postForObject(_URLS + studentId + "/enroll", studentDTO, Object.class);
     }
+
 }
