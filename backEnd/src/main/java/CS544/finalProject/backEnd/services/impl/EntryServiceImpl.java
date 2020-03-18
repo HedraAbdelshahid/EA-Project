@@ -2,6 +2,7 @@ package CS544.finalProject.backEnd.services.impl;
 
 import CS544.finalProject.backEnd.dao.EntryDao;
 import CS544.finalProject.backEnd.models.Entry;
+import CS544.finalProject.backEnd.models.Student;
 import CS544.finalProject.backEnd.services.EntryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +62,8 @@ public class EntryServiceImpl implements EntryService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public boolean checkEnrolmentDate(Long entryId) {
-		Entry entry = entryDao.findById(entryId);
+	public boolean checkEnrolmentDate(Student student) {
+		Entry entry = student.getEntry();
 
 		Date entrolmentStartDate = entry.getStartDate();
 		Date enrolmentEndDate = entry.getEndDate();

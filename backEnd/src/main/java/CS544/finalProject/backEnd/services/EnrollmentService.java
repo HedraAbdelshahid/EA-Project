@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import CS544.finalProject.backEnd.models.Enrollment;
-import CS544.finalProject.backEnd.models.Section;
 
 public interface EnrollmentService {
 	Enrollment save(Enrollment enrollment);
@@ -19,7 +18,8 @@ public interface EnrollmentService {
 	Enrollment findById(Long id);
 
 	List<Enrollment> makeEnrollment(List<Enrollment> enrollments);
+	
+    void enrol(Long studentId, Long sectionId);
 
-//	public List<Section> currentenrollmentOfStundent(Long studentId);
 
 }

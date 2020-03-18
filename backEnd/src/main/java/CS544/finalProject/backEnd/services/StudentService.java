@@ -1,7 +1,7 @@
 package CS544.finalProject.backEnd.services;
 
-import CS544.finalProject.backEnd.models.Enrollment;
 import CS544.finalProject.backEnd.models.Student;
+import CS544.finalProject.backEnd.models.StudentSectionDTO;
 
 import java.util.List;
 
@@ -19,6 +19,6 @@ public interface StudentService {
 
 	Student findById(Long id) throws Throwable;
 
-	Enrollment enrol(Long studentId, Long sectionId);
+	Student enrol(StudentSectionDTO studentSectionDTO) throws Throwable;
 
 }

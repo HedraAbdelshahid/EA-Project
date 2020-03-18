@@ -1,5 +1,6 @@
 package CS544.finalProject.backEnd.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Propagation;
@@ -9,13 +10,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import CS544.finalProject.backEnd.dao.EnrollmentDao;
+import CS544.finalProject.backEnd.dao.SectionDao;
+import CS544.finalProject.backEnd.dao.StudentDao;
 import CS544.finalProject.backEnd.models.Enrollment;
+import CS544.finalProject.backEnd.models.Section;
+import CS544.finalProject.backEnd.models.Student;
 import CS544.finalProject.backEnd.services.EnrollmentService;
+import CS544.finalProject.backEnd.services.EntryService;
 
 @Service
 public class EnrollmentServiceImpl implements EnrollmentService {
 	@Autowired
 	private EnrollmentDao enrollmentDao;
+	@Autowired
+	StudentDao studentDao;
+	@Autowired
+	SectionDao sectionDao;
+	@Autowired
+	private EntryService entryService;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -60,9 +72,21 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		enrollments.forEach(enrollment -> enrollmentDao.save(enrollment));
 		return enrollmentDao.findAll();
 	}
-//	public List<Section> currentEnrollmentOfStundent(Long studentId){
-//		List<Section> studentEnrolledSections = new ArrayList<Section>();
-//		
-//	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public void enrol(Long studentId, Long sectionId) {
+
+		Student studentToEnroll = studentDao.findById(studentId);
+		Section sectionEnrolledIn = sectionDao.findById(sectionId);
+		if (entryService.checkEnrolmentDate(studentToEnroll)) {
+			Enrollment enrollment = new Enrollment(new Date());
+			enrollment.setSection(sectionEnrolledIn);
+			enrollment.setStudent(studentToEnroll);
+			enrollmentDao.save(enrollment);
+
+		}
+
+	}
 
 }

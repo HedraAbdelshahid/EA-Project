@@ -3,6 +3,7 @@ package CS544.finalProject.backEnd.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Student extends Person {
 	@ManyToOne
 	private Entry entry;
 
-	@OneToMany(mappedBy = "student")
+	@OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
 	private List<Enrollment> enrollments;
 
 	public Student(String email, String name, Long studentId) {

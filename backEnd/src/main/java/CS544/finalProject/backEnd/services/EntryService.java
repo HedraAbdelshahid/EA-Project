@@ -1,6 +1,7 @@
 package CS544.finalProject.backEnd.services;
 
 import CS544.finalProject.backEnd.models.Entry;
+import CS544.finalProject.backEnd.models.Student;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public interface EntryService {
 	List<Entry> findAll();
 
 	Entry findById(Long id);
-	boolean checkEnrolmentDate(Long entryId);
+
+	boolean checkEnrolmentDate(Student student);
 
 }

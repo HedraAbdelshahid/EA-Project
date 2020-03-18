@@ -7,6 +7,7 @@ import CS544.finalProject.backEnd.models.Course;
 import CS544.finalProject.backEnd.models.Enrollment;
 import CS544.finalProject.backEnd.models.Section;
 import CS544.finalProject.backEnd.models.Student;
+import CS544.finalProject.backEnd.models.StudentSectionDTO;
 import CS544.finalProject.backEnd.services.EnrollmentService;
 import CS544.finalProject.backEnd.services.EntryService;
 import CS544.finalProject.backEnd.services.SectionService;
@@ -34,6 +35,8 @@ public class StudentServiceImpl implements StudentService {
 	private EnrollmentService enrollmentService;
 	@Autowired
 	private SectionService sectionService;
+	@Autowired
+	private EntryService entryService;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -81,19 +84,16 @@ public class StudentServiceImpl implements StudentService {
 		// required id: " + id));
 	}
 
-
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Enrollment enrol(Long studentId, Long sectionId) {
-
-		Student studentToEnroll = studentDao.findById(studentId);
-		Section sectionEnrolledIn = sectionDao.findById(sectionId);
-		Enrollment enrollment = new Enrollment(new Date());
-		enrollment.setSection(sectionEnrolledIn);
-		enrollment.setStudent(studentToEnroll);
-		return enrollmentService.save(enrollment);
+	public Student enrol(@RequestBody StudentSectionDTO studentSectionDTO) throws Throwable{
 		
+		Long studentId = studentSectionDTO.getStudentId();
+		
+		studentSectionDTO.getSectionIds().forEach(s -> enrollmentService.enrol(studentId, s));
 
+		 return findById(studentId);
+		
 	}
 
 }
