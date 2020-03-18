@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import CS544.finalProject.backEnd.models.Person;
+import CS544.finalProject.backEnd.models.Student;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

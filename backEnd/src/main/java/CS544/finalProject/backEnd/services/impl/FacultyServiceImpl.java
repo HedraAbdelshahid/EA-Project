@@ -20,46 +20,46 @@ import CS544.finalProject.backEnd.models.Student;
 import CS544.finalProject.backEnd.services.FaculityService;
 
 @Service
-@Transactional(propagation=Propagation.REQUIRES_NEW)
-public class FacultyServiceImpl implements FaculityService{
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public class FacultyServiceImpl implements FaculityService {
 
-	
+
     @Autowired
     private FacultyDao facultyDao;
 
     @Autowired
-	private EnrollmentService enrollmentService;
-	@Override
-	public Faculty save(Faculty faculty) {
-		return facultyDao.save(faculty);
-	}
+    private EnrollmentService enrollmentService;
+
+    @Override
+    public Faculty save(Faculty faculty) {
+        return facultyDao.save(faculty);
+    }
 
 
-	@Override
-	public void delete(Long id) {
-		facultyDao.deleteById(id);	
-	}
+    @Override
+    public void delete(Long id) {
+        facultyDao.deleteById(id);
+    }
 
-	@Override
-	public List<Faculty> findAll() {
-		return facultyDao.findAll();
-	}
-	
-	@Override
-	public Faculty findById(Long id) {
-		return facultyDao.findById(id);
-	}
+    @Override
+    public List<Faculty> findAll() {
+        return facultyDao.findAll();
+    }
 
-	@Override
-	public List<Student> viewStudents(Long id) {
-        facultyDao. getStudents(id);
-	}
+    @Override
+    public Faculty findById(Long id) {
+        return facultyDao.findById(id);
+    }
 
-	@Override
-	public Faculty update(Long id,Faculty faculty) {
-		return facultyDao.update(id,faculty);
-	}
+    @Override
+    public List<Student> viewStudents(Long id) {
+        return facultyDao.getStudents(id);
+    }
 
+    @Override
+    public Faculty update(Long id, Faculty faculty) {
+        return facultyDao.update(id, faculty);
+    }
 
 
 }

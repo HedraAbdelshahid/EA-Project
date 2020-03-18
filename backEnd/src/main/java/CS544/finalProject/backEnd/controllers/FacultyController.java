@@ -23,36 +23,35 @@ import CS544.finalProject.backEnd.services.impl.SectionServiceImpl;
 @RequestMapping("/faculty")
 public class FacultyController {
 
-	@Autowired
-	private FaculityService facultyService;
+    @Autowired
+    private FaculityService facultyService;
 
-	@GetMapping("")
-	public List<Faculty> getAll() throws Throwable {
-		return facultyService.findAll();
+    @GetMapping("")
+    public List<Faculty> getAll() throws Throwable {
+        return facultyService.findAll();
 
-	}
+    }
 
-	@PostMapping("")
-	public Faculty addFaculty(@RequestBody Faculty newFaculty) {
-		return facultyService.save(newFaculty);
-	}
+    @PostMapping("")
+    public Faculty addFaculty(@RequestBody Faculty newFaculty) {
+        return facultyService.save(newFaculty);
+    }
 
-	@PutMapping("/{id}")
-	public Faculty updateFaculty(@PathVariable Long id, @RequestBody Faculty newFaculty) throws Throwable {
+    @PutMapping("/{id}")
+    public Faculty updateFaculty(@PathVariable Long id, @RequestBody Faculty newFaculty) throws Throwable {
+        return facultyService.update(id, newFaculty);
+    }
 
-		return facultyService.update(id, newFaculty);
-	}
+    @DeleteMapping("/{id}")
+    public void deleteFaculty(@PathVariable Long id) throws Throwable {
+        facultyService.delete(id);
+    }
 
-	@DeleteMapping("/{id}")
-	public void deleteFaculty(@PathVariable Long id) throws Throwable {
-		facultyService.delete(id);
-	}
-
-	@GetMapping("/{id}/view_students")
-	public List<Student> viewStudents(@PathVariable Long id) throws Throwable {
-		Faculty faculty = facultyDao.findById(id);
-		Long sectionId = faculty.getSection().getId();
-		return facultyService.viewStudents(sectionId);
-	}
+    @GetMapping("/{id}/viewStudents")
+    public List<Student> viewStudents(@PathVariable Long id) throws Throwable {
+        Faculty faculty = facultyService.findById(id);
+        Long sectionId = faculty.getSection().getId();
+        return facultyService.viewStudents(sectionId);
+    }
 
 }

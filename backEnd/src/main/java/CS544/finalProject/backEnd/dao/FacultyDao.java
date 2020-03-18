@@ -3,6 +3,7 @@ package CS544.finalProject.backEnd.dao;
 import java.util.List;
 
 import CS544.finalProject.backEnd.models.Faculty;
+import CS544.finalProject.backEnd.models.Student;
 
 public interface FacultyDao {
 
