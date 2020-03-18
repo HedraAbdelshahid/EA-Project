@@ -7,7 +7,6 @@ import CS544.finalProject.backEnd.models.Enrollment;
 import CS544.finalProject.backEnd.models.Section;
 import CS544.finalProject.backEnd.models.Student;
 import CS544.finalProject.backEnd.services.EnrollmentService;
-import CS544.finalProject.backEnd.services.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,8 +25,6 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     StudentDao studentDao;
     @Autowired
     SectionDao sectionDao;
-    @Autowired
-    private EntryService entryService;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -40,6 +37,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     public Enrollment update(Long Id, @RequestBody Enrollment enrollmentDetais) throws Throwable {
         Enrollment enrollmentToBeUpdated = (Enrollment) enrollmentDao.findById(Id);
         enrollmentToBeUpdated.setEnrollmentDate(enrollmentDetais.getEnrollmentDate());
+        enrollmentToBeUpdated.setSection(enrollmentDetais.getSection());
+        enrollmentToBeUpdated.setStudent(enrollmentDetais.getStudent());
         final Enrollment updatedEnrollment = enrollmentDao.save(enrollmentToBeUpdated);
         return updatedEnrollment;
 

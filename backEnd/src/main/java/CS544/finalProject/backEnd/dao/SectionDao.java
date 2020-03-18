@@ -12,7 +12,7 @@ public interface SectionDao {
 
     void delete(Section section);
 
-    List<Section> findAll(Section section);
+    List<Section> findAll();
 
     Section findById(Long id);
 }
