@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 @Entity
@@ -21,11 +24,17 @@ public class Enrollment {
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
+    
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private Date enrollmentDate;
 
     public Enrollment(Date enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
+    
+    
+    
+
 
 }

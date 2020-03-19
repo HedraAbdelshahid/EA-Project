@@ -1,6 +1,5 @@
 package CS544.finalProject.backEnd.services.impl;
 
-import CS544.finalProject.backEnd.dao.SectionDao;
 import CS544.finalProject.backEnd.dao.StudentDao;
 import CS544.finalProject.backEnd.models.*;
 import CS544.finalProject.backEnd.services.EnrollmentService;
@@ -13,86 +12,84 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired
-    private StudentDao studentDao;
+	@Autowired
+	private StudentDao studentDao;
 
-    @Autowired
-    EnrollmentService enrollmentService;
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Student save(Student student) {
-        return studentDao.save(student);
-    }
+	@Autowired
+	EnrollmentService enrollmentService;
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Student update(long studentId, @RequestBody Student studentDetails) throws Throwable {
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public Student save(Student student) {
+		return studentDao.save(student);
+	}
 
-        Student student = (Student) studentDao.findById(studentId)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found for this id : : " + studentId));
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public Student update(long studentId, @RequestBody Student studentDetails) throws Throwable {
 
-        student.setName(studentDetails.getName());
-        student.setEmail(studentDetails.getEmail());
-        student.setEntry(studentDetails.getEntry());
+		Student student = (Student) studentDao.findById(studentId)
+				.orElseThrow(() -> new ResourceNotFoundException("Student not found for this id : : " + studentId));
 
-        final Student updated_student = studentDao.save(student);
-        return updated_student;
-    }
+		student.setName(studentDetails.getName());
+		student.setEmail(studentDetails.getEmail());
+		student.setEntry(studentDetails.getEntry());
+		student.setEnrollments(studentDetails.getEnrollments());
+		final Student updated_student = studentDao.save(student);
+		return updated_student;
+	}
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public ResponseEntity<Void> delete(long studentId) throws Throwable {
-        Student student = (Student) studentDao.findById(studentId)
-                .orElseThrow(() -> new ResourceNotFoundException(("Student not found for this id : : " + studentId)));
-        studentDao.delete(student);
-        return ResponseEntity.noContent().build();
-    }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public ResponseEntity<Void> delete(long studentId) throws Throwable {
+		Student student = (Student) studentDao.findById(studentId)
+				.orElseThrow(() -> new ResourceNotFoundException(("Student not found for this id : : " + studentId)));
+		studentDao.delete(student);
+		return ResponseEntity.noContent().build();
+	}
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public List<Student> findAll() {
-        return studentDao.findAll();
-    }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public List<Student> findAll() {
+		List<Student> students = studentDao.findAll();
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Student findById(Long id) throws Throwable {
-        return (Student) studentDao.findById(id).orElseThrow(() -> new ResourceNotFoundException("No Student is found the required id: " + id));
-    }
+		students.stream().forEach(std -> {
+			std.setEnrollments(null);
+			std.setEntry(null);
+		});
 
-   /* @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Student enroll(long studentId, @RequestBody StudentDTO studentDTO) throws Throwable {
+		return students;
+	}
 
-        Student updated_student = null;
-        Student student = (Student) studentDao.findById(studentId)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found for this id : : " + studentId));
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public Student findById(Long id) throws Throwable {
+		Student student = (Student) studentDao.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No Student is found the required id: " + id));
 
-        if(studentDTO.getSections().size() == 4 ){
-            student.setSections((studentDTO.getSections()));
-            updated_student = studentDao.save(student);
+		student.setEnrollments(null);
+		student.setEntry(null);
+		return student;
+	}
 
-            return updated_student;
-        }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public Student enrol(@RequestBody StudentSectionDTO studentSectionDTO) throws Throwable {
 
-        return student;
-    }
-*/
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Student enrol(@RequestBody StudentSectionDTO studentSectionDTO) throws Throwable{
+		Long studentId = studentSectionDTO.getStudentId();
 
-        Long studentId = studentSectionDTO.getStudentId();
+		studentSectionDTO.getSectionIds().forEach(s -> enrollmentService.enrol(studentId, s));
 
-        studentSectionDTO.getSectionIds().forEach(s -> enrollmentService.enrol(studentId, s));
+		Student std = findById(studentId);
+		std.setEnrollments(null);
+		std.setEntry(null);
 
-        return findById(studentId);
+		return std;
 
-    }
-
+	}
 
 }
-

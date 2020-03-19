@@ -1,17 +1,21 @@
 package CS544.finalProject.backEnd.models;
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class StudentSectionDTO {
+public class EnrollmentDTO {
 
-	private Long studentId;
-	private List<Long> SectionIds;;
+	Long id;
+	private Long sectionID;
+
+	private Long studentID;
+
+	private Date enrollmentDate;
 
 }

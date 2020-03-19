@@ -5,10 +5,13 @@ import CS544.finalProject.backEnd.models.Student;
 import CS544.finalProject.backEnd.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 @Component
+@Transactional(propagation = Propagation.MANDATORY)
 public class StudentDaoImpl implements StudentDao {
 
     @Autowired
