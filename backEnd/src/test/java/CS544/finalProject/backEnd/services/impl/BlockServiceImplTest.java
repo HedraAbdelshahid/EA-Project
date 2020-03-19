@@ -53,7 +53,7 @@ class BlockServiceImplTest {
 
     @Test
     void save() {
-        
+
         when(blockService.save(block)).thenReturn(block);
         assertEquals(block, blockService.save(block));
     }
