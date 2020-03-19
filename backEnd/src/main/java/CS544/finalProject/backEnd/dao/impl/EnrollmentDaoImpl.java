@@ -40,7 +40,7 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
 
 	@Override
 	public Enrollment findById(Long id) {
-		return enrollmentRepository.findById(id).orElseThrow();
+		return enrollmentRepository.findById(id).get();
 	}
 
 }

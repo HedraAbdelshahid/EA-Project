@@ -14,10 +14,10 @@ import lombok.Setter;
 
 public class StudentDTO {
 
-	private Long studentId;
-	private String email;
-	private String name;
-	private Entry entry;
-	private List<Enrollment> enrollments;
+    private Long studentId;
+    private String email;
+    private String name;
+    private Entry entry;
+    private List<Enrollment> enrollments;
 
 }
