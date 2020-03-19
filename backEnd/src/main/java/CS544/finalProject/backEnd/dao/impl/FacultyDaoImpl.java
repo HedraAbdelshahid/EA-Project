@@ -38,7 +38,7 @@ public class FacultyDaoImpl implements FacultyDao{
 	}
 	@Override
 	public List<Student> getStudents(Long id){
-		return facultyRepository.getAllStudentFromSection(id);
+		return facultyRepository.findAllStudentFromEnrollment(id);
 	}
 	@Override
 	public List<Faculty> findAll() {

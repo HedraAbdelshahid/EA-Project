@@ -50,8 +50,11 @@ public class FacultyController {
     @GetMapping("/{id}/viewStudents")
     public List<Student> viewStudents(@PathVariable Long id) throws Throwable {
         Faculty faculty = facultyService.findById(id);
-        Long sectionId = faculty.getSection().getId();
-        return facultyService.viewStudents(sectionId);
+        if (faculty != null) {
+            if (faculty.getSection() != null) {
+                return facultyService.viewStudents(faculty.getSection().getId());
+            }
+        } else throw new RuntimeException("Not Found");
+        return null;
     }
-
 }
