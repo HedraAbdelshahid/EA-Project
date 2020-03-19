@@ -2,11 +2,9 @@ package CS544.finalProject.backEnd.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -14,41 +12,20 @@ import java.util.List;
 @Setter
 public class Section {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String name;
+	private String name;
 
-    @OneToOne
-    private Faculty faculty;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Faculty faculty;
 
-    @ManyToOne
-    private Offering offering;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Offering offering;
 
-
-    public Section(String name) {
-        this.name = name;
-    }
-
-  /*  @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-
-    @OneToOne
-    private Faculty faculty;
-    @ManyToOne
-    private Offering offering;
-
-
-    @ManyToMany(mappedBy = "sections",cascade = CascadeType.ALL)
-    private List<Student> students;
-
-    public Section(String name) {
-        this.name = name;
-    }
-*/
+	public Section(String name) {
+		this.name = name;
+	}
 
 }

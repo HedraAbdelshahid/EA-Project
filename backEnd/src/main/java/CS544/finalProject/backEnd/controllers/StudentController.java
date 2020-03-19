@@ -1,7 +1,10 @@
 package CS544.finalProject.backEnd.controllers;
 
+import CS544.finalProject.backEnd.models.Enrollment;
+import CS544.finalProject.backEnd.models.EnrollmentDTO;
 import CS544.finalProject.backEnd.models.Student;
 import CS544.finalProject.backEnd.models.StudentSectionDTO;
+import CS544.finalProject.backEnd.services.EnrollmentService;
 import CS544.finalProject.backEnd.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,20 +17,30 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private EnrollmentService enrollmentService;
+
+	@GetMapping("/enrollments/{enrollmentId}")
+	public EnrollmentDTO getEnrollment(@PathVariable Long enrollmentId) {
+		Enrollment e = enrollmentService.findById(enrollmentId);
+		EnrollmentDTO dto = new EnrollmentDTO();
+		dto.setId(e.getId());
+		dto.setSectionID(e.getSection().getId());
+		dto.setStudentID(e.getStudent().getId());
+
+		return dto;
+
+	}
 
 	@GetMapping("/students")
 	public List<Student> getAll() throws Throwable {
-//
-//        Student student = new Student("a@b.com", "Thomas", 1L);
-//        studentService.save(student);
-//
-//        StudentSectionDTO studentSectionDTO1 = new StudentSectionDTO();
-//        studentSectionDTO1.setStudentId(1L);
-//        studentSectionDTO1.setSectionIds(Arrays.asList(1L, 2L, 3L, 4L));
-//        studentService.enrol(studentSectionDTO1);
-//
 
 		return studentService.findAll();
+	}
+
+	@GetMapping("/students/{studentId}")
+	public Student getStudent(@PathVariable Long studentId) throws Throwable {
+		return studentService.findById(studentId);
 	}
 
 	@PutMapping("/students/{studentId}")
@@ -40,18 +53,12 @@ public class StudentController {
 		return studentService.delete(studentId);
 	}
 
-//    @PutMapping("/students/{studentId}/enroll")
-//    public Student enroll(@PathVariable Long studentId, @RequestBody StudentDTO studentDTO) throws Throwable {
-//            return studentService.enroll(studentId,studentDTO);
-//
-//    }
-
-	@PostMapping(value = "students/add", consumes = "application/json")
+	@PostMapping(value = "/students", consumes = "application/json")
 	public Student addStudent(@RequestBody Student student) {
 		return studentService.save(student);
 	}
 
-	@PostMapping(value = "/enrollments"/* , consumes = "application/json" */)
+	@PostMapping(value = "students/enrollments")
 	public Student enrollStudent(@RequestBody StudentSectionDTO studentSectionDTO) throws Throwable {
 
 		return studentService.enrol(studentSectionDTO);

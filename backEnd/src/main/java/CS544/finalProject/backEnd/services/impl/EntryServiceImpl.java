@@ -5,6 +5,7 @@ import CS544.finalProject.backEnd.models.Entry;
 import CS544.finalProject.backEnd.models.Student;
 import CS544.finalProject.backEnd.services.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class EntryServiceImpl implements EntryService {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Entry save(Entry entry) {
-        return entryDao.save(null);
+        return entryDao.save(entry);
     }
 
 
@@ -42,9 +43,10 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void delete(Long Id) throws Throwable {
+    public ResponseEntity<Void> delete(Long Id) throws Throwable {
         Entry tobedeleted = entryDao.findById(Id);
         entryDao.delete(tobedeleted);
+		return null;
 
     }
 
