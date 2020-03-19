@@ -5,6 +5,7 @@ import CS544.finalProject.backEnd.exceptions.ResourceNotFoundException;
 import CS544.finalProject.backEnd.models.Block;
 import CS544.finalProject.backEnd.models.Course;
 import CS544.finalProject.backEnd.models.Offering;
+import CS544.finalProject.backEnd.models.OfferingDTO;
 import CS544.finalProject.backEnd.services.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @RestController
 public class OfferingController {
@@ -22,7 +25,7 @@ public class OfferingController {
 
 
     @GetMapping(AppConfig.OFFERINGS)
-    public List<Offering> getAllOfferings() {
+    public List<OfferingDTO> getAllOfferings() {
 
 //        Course course = new Course("“CS544”","Enterprise Architecture","This is description");
 //        List<Block> blocks = new ArrayList<>();
@@ -33,7 +36,20 @@ public class OfferingController {
 //        offering.setBlock(blocks);
 //        offeringService.save(offering);
 
-        return offeringService.findAll();
+        List<OfferingDTO> offeringDTOS = new ArrayList<>();
+        for (Offering offering : offeringService.findAll()) {
+            OfferingDTO o = new OfferingDTO();
+            o.setId(offering.getId());
+            o.setCode(offering.getCode());
+            o.setCourseId(offering.getCourse().getId());
+            List<Long> ids = new ArrayList<>();
+            for (Block e : offering.getBlock()) ids.add(e.getId());
+            o.setBlockIds(ids);
+            offeringDTOS.add(o);
+        }
+//        return offeringService.findAll();
+
+        return offeringDTOS;
     }
 
 //    @GetMapping(AppConfig.OFFERINGS + AppConfig.COURSES + AppConfig.BLOCKS)
